@@ -23,12 +23,11 @@ export default function Header() {
 
   const navLinks = [
     { label: "Головна", href: "#" },
-    { label: "Продукти", href: "#" },
-    { label: "Про нас", href: "#" },
-    { label: "Контакти", href: "#" },
+    { label: "Подорож", href: "#" },
+    { label: "Культура", href: "#" },
+    { label: "Їжа", href: "#" },
+    { label: "Природа", href: "#" }
   ];
-
-  // Функція для обробки пошуку (можна розширити)
   const handleSearch = (e) => {
     e.preventDefault();
     // Тут можна додати логіку пошуку
