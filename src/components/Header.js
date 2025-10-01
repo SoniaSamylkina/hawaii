@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import styles from "./Header.module.css";
+import Sales from "../page/Sales";
 
 export default function Header() {
   const [theme, setTheme] = useState("light");
@@ -23,7 +24,7 @@ export default function Header() {
 
   const navLinks = [
     { label: "Головна", href: "#" },
-    { label: "Подорож", href: "#" },
+    { label: "Подорож", href: <Sales /> },
     { label: "Культура", href: "#" },
     { label: "Їжа", href: "#" },
     { label: "Природа", href: "#" }
