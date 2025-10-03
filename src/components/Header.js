@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from "react";
 import styles from "./Header.module.css";
-import Sales from "../page/Sales";
 
-export default function Header() {
+export default function Header({ onNavigate }) {
   const [theme, setTheme] = useState("light");
   const [menuOpen, setMenuOpen] = useState(false);
   const [search, setSearch] = useState("");
@@ -24,7 +23,7 @@ export default function Header() {
 
   const navLinks = [
     { label: "Головна", href: "#" },
-    { label: "Подорож", href: <Sales /> },
+    { label: "Продажі", href: "#sales" },
     { label: "Культура", href: "#" },
     { label: "Їжа", href: "#" },
     { label: "Природа", href: "#" }
@@ -60,7 +59,17 @@ export default function Header() {
 
         <ul className={styles.links}>
           {navLinks.map((l) => (
-            <li key={l.label}><a href={l.href}>{l.label}</a></li>
+            <li key={l.label}>
+              <a 
+                href={l.href} 
+                onClick={(e) => {
+                  e.preventDefault();
+                  onNavigate && onNavigate(l.href);
+                }}
+              >
+                {l.label}
+              </a>
+            </li>
           ))}
         </ul>
 
@@ -85,7 +94,16 @@ export default function Header() {
           <ul>
             {navLinks.map((l) => (
               <li key={l.label}>
-                <a href={l.href} onClick={() => setMenuOpen(false)}>{l.label}</a>
+                <a 
+                  href={l.href} 
+                  onClick={(e) => {
+                    e.preventDefault();
+                    onNavigate && onNavigate(l.href);
+                    setMenuOpen(false);
+                  }}
+                >
+                  {l.label}
+                </a>
               </li>
             ))}
           </ul>
