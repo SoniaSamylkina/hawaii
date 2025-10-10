@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import Header from './components/Header';
 import HomePage from './components/HomePage';
 import Sales from './page/Sales';
+import Food from './page/Food';
+import Nature from './page/Nature';
 import './App.css';
 import Footer from './components/Footer';
 
@@ -11,6 +13,10 @@ function App() {
   const handleNavigation = (href) => {
     if (href === '#sales') {
       setCurrentPage('sales');
+    } else if (href === '#food') {
+      setCurrentPage('food');
+    } else if (href === '#nature') {
+      setCurrentPage('nature');
     } else if (href === '#') {
       setCurrentPage('home');
     }
@@ -20,6 +26,10 @@ function App() {
     switch (currentPage) {
       case 'sales':
         return <Sales />;
+      case 'food':
+        return <Food />;
+      case 'nature':
+        return <Nature />;
       default:
         return <HomePage />;
     }

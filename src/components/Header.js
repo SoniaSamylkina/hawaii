@@ -25,8 +25,8 @@ export default function Header({ onNavigate }) {
     { label: "Головна", href: "#" },
     { label: "Продажі", href: "#sales" },
     { label: "Культура", href: "#" },
-    { label: "Їжа", href: "#" },
-    { label: "Природа", href: "#" }
+    { label: "Їжа", href: "#food" },
+    { label: "Природа", href: "#nature" }
   ];
   const handleSearch = (e) => {
     e.preventDefault();
