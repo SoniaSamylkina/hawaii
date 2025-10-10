@@ -1,0 +1,984 @@
+/* Hawaiian Cultural CSS Variables */
+:root {
+  --hawaiian-red: #d32f2f;
+  --hawaiian-orange: #ff6f00;
+  --hawaiian-yellow: #ffc107;
+  --hawaiian-green: #2e7d32;
+  --hawaiian-blue: #1565c0;
+  --hawaiian-purple: #7b1fa2;
+  --hawaiian-brown: #5d4037;
+  --hawaiian-gold: #ff8f00;
+  
+  --text-dark: #2c3e50;
+  --text-light: #7f8c8d;
+  --white: #ffffff;
+  
+  --gradient-hawaiian: linear-gradient(135deg, #d32f2f 0%, #ff6f00 50%, #ffc107 100%);
+  --gradient-ocean: linear-gradient(135deg, #1565c0 0%, #2e7d32 100%);
+  --gradient-sunset: linear-gradient(135deg, #ff6f00 0%, #d32f2f 100%);
+  --gradient-nature: linear-gradient(135deg, #2e7d32 0%, #ffc107 100%);
+  
+  --shadow-light: 0 4px 6px rgba(0, 0, 0, 0.1);
+  --shadow-medium: 0 10px 25px rgba(0, 0, 0, 0.15);
+  --shadow-heavy: 0 20px 40px rgba(0, 0, 0, 0.2);
+  --shadow-hawaiian: 0 10px 30px rgba(211, 47, 47, 0.3);
+  
+  --border-radius: 16px;
+  --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Dark theme support */
+[data-theme="dark"] {
+  --text-dark: #ecf0f1;
+  --text-light: #bdc3c7;
+  --white: #2c3e50;
+}
+
+/* Base styles */
+.homepage {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+  line-height: 1.6;
+  color: var(--text-dark);
+  background: linear-gradient(135deg, #f8f9fa 0%, #e3f2fd 100%);
+}
+
+.container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+/* Hawaiian Pattern Overlays */
+.hawaiian-pattern-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: 
+    radial-gradient(circle at 20% 20%, rgba(211, 47, 47, 0.1) 0%, transparent 50%),
+    radial-gradient(circle at 80% 80%, rgba(255, 111, 0, 0.1) 0%, transparent 50%),
+    radial-gradient(circle at 40% 60%, rgba(255, 193, 7, 0.1) 0%, transparent 50%);
+  z-index: 2;
+  pointer-events: none;
+}
+
+/* Hero Section with Hawaiian Cultural Elements */
+.hero {
+  position: relative;
+  height: 100vh;
+  min-height: 600px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.hero-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+.hero-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  opacity: 0;
+  transition: opacity 1.5s ease-in-out;
+}
+
+.hero-image.active {
+  opacity: 1;
+}
+
+.hero-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    135deg,
+    rgba(211, 47, 47, 0.4) 0%,
+    rgba(255, 111, 0, 0.3) 30%,
+    rgba(255, 193, 7, 0.2) 60%,
+    rgba(21, 101, 192, 0.4) 100%
+  );
+  z-index: 2;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 3;
+  text-align: center;
+  color: var(--white);
+  max-width: 900px;
+  padding: 0 20px;
+}
+
+.hawaiian-greeting {
+  margin-bottom: 2rem;
+}
+
+.aloha-text {
+  display: block;
+  font-size: 3rem;
+  font-weight: 300;
+  margin-bottom: 0.5rem;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+  animation: wave 2s ease-in-out infinite;
+}
+
+.hawaiian-subtitle {
+  display: block;
+  font-size: 1.2rem;
+  opacity: 0.9;
+  font-style: italic;
+}
+
+.hero-title {
+  font-size: clamp(3rem, 8vw, 6rem);
+  font-weight: 800;
+  margin-bottom: 1.5rem;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.3);
+}
+
+.hawaii-highlight {
+  background: var(--gradient-hawaiian);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-shadow: none;
+}
+
+.hero-subtitle {
+  font-size: clamp(1.1rem, 2.5vw, 1.4rem);
+  margin-bottom: 2.5rem;
+  opacity: 0.95;
+  font-weight: 300;
+  line-height: 1.6;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+.hero-buttons {
+  display: flex;
+  gap: 1.5rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.btn-primary, .btn-secondary, .btn-outline {
+  padding: 1.2rem 2.5rem;
+  border-radius: var(--border-radius);
+  font-weight: 600;
+  font-size: 1.1rem;
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+  transition: var(--transition);
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  box-shadow: var(--shadow-medium);
+}
+
+.btn-primary {
+  background: var(--gradient-hawaiian);
+  color: var(--white);
+  border: 2px solid transparent;
+}
+
+.btn-primary:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-hawaiian);
+}
+
+.btn-secondary {
+  background: rgba(255, 255, 255, 0.15);
+  color: var(--white);
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  backdrop-filter: blur(10px);
+}
+
+.btn-secondary:hover {
+  background: rgba(255, 255, 255, 0.25);
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-medium);
+}
+
+.btn-outline {
+  background: transparent;
+  color: var(--hawaiian-red);
+  border: 2px solid var(--hawaiian-red);
+}
+
+.btn-outline:hover {
+  background: var(--hawaiian-red);
+  color: var(--white);
+  transform: translateY(-3px);
+}
+
+.btn-icon {
+  font-size: 1.2rem;
+  transition: transform 0.3s ease;
+}
+
+.btn-primary:hover .btn-icon,
+.btn-secondary:hover .btn-icon {
+  transform: scale(1.2);
+}
+
+.hero-indicators {
+  position: absolute;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 0.8rem;
+  z-index: 3;
+}
+
+.indicator {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  border: 2px solid rgba(255, 255, 255, 0.6);
+  background: transparent;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.indicator.active {
+  background: var(--hawaiian-gold);
+  border-color: var(--hawaiian-gold);
+  box-shadow: 0 0 10px rgba(255, 143, 0, 0.5);
+}
+
+/* Hawaiian Section Titles */
+.hawaiian-section-title {
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.hawaiian-name {
+  display: block;
+  font-size: 2.5rem;
+  font-weight: 300;
+  color: var(--hawaiian-red);
+  margin-bottom: 0.5rem;
+  font-style: italic;
+}
+
+.section-subtitle {
+  display: block;
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--text-dark);
+}
+
+/* Cultural Stats Section */
+.cultural-stats {
+  padding: 6rem 0;
+  background: linear-gradient(135deg, #fff3e0 0%, #ffe0b2 100%);
+  position: relative;
+}
+
+.cultural-stats::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: 
+    repeating-linear-gradient(
+      45deg,
+      transparent,
+      transparent 10px,
+      rgba(211, 47, 47, 0.03) 10px,
+      rgba(211, 47, 47, 0.03) 20px
+    );
+  pointer-events: none;
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 3rem;
+  text-align: center;
+}
+
+.cultural-stat-item {
+  position: relative;
+  padding: 2.5rem 2rem;
+  background: var(--white);
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow-light);
+  transition: var(--transition);
+  border: 3px solid transparent;
+}
+
+.cultural-stat-item:hover {
+  transform: translateY(-8px);
+  box-shadow: var(--shadow-heavy);
+  border-color: var(--hawaiian-gold);
+}
+
+.stat-decoration {
+  position: absolute;
+  top: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60px;
+  height: 20px;
+  background: var(--gradient-hawaiian);
+  border-radius: 10px;
+}
+
+.stat-number {
+  font-size: 3.5rem;
+  font-weight: 800;
+  color: var(--hawaiian-red);
+  margin-bottom: 0.5rem;
+  background: var(--gradient-hawaiian);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.stat-label {
+  font-size: 1.2rem;
+  color: var(--text-dark);
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.stat-hawaiian-label {
+  font-size: 0.9rem;
+  color: var(--hawaiian-brown);
+  font-style: italic;
+}
+
+/* Cultural Features Section */
+.cultural-features {
+  padding: 8rem 0;
+  background: linear-gradient(135deg, #f3e5f5 0%, #e1bee7 100%);
+  position: relative;
+}
+
+.cultural-features::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: 
+    radial-gradient(circle at 25% 25%, rgba(255, 111, 0, 0.1) 0%, transparent 50%),
+    radial-gradient(circle at 75% 75%, rgba(255, 193, 7, 0.1) 0%, transparent 50%);
+  pointer-events: none;
+}
+
+.section-header {
+  text-align: center;
+  margin-bottom: 5rem;
+}
+
+.section-header p {
+  font-size: 1.3rem;
+  color: var(--text-light);
+  max-width: 700px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+.cultural-features-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 3rem;
+}
+
+.cultural-feature-card {
+  background: var(--white);
+  padding: 3rem 2.5rem;
+  border-radius: var(--border-radius);
+  text-align: center;
+  box-shadow: var(--shadow-light);
+  transition: var(--transition);
+  position: relative;
+  overflow: hidden;
+  border: 2px solid transparent;
+}
+
+.cultural-feature-card:hover {
+  transform: translateY(-10px);
+  box-shadow: var(--shadow-heavy);
+  border-color: var(--hawaiian-orange);
+}
+
+.feature-pattern {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 6px;
+  background: var(--gradient-hawaiian);
+  transform: scaleX(0);
+  transition: var(--transition);
+}
+
+.cultural-feature-card:hover .feature-pattern {
+  transform: scaleX(1);
+}
+
+.feature-icon {
+  font-size: 4rem;
+  margin-bottom: 1.5rem;
+  display: block;
+  animation: float 3s ease-in-out infinite;
+}
+
+.feature-title {
+  font-size: 1.6rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  color: var(--text-dark);
+}
+
+.feature-hawaiian-name {
+  font-size: 1.1rem;
+  font-weight: 400;
+  color: var(--hawaiian-brown);
+  margin-bottom: 1.5rem;
+  font-style: italic;
+}
+
+.feature-description {
+  color: var(--text-light);
+  line-height: 1.7;
+  font-size: 1rem;
+}
+
+/* Ancient Wisdom Section */
+.ancient-wisdom {
+  padding: 8rem 0;
+  background: linear-gradient(135deg, #e8f5e8 0%, #c8e6c9 100%);
+  position: relative;
+}
+
+.wisdom-content {
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.wisdom-header {
+  text-align: center;
+  margin-bottom: 5rem;
+}
+
+.wisdom-header p {
+  font-size: 1.2rem;
+  color: var(--text-light);
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.wisdom-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 3rem;
+}
+
+.wisdom-card {
+  background: var(--white);
+  padding: 3rem 2.5rem;
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow-light);
+  transition: var(--transition);
+  position: relative;
+  overflow: hidden;
+  border-left: 6px solid var(--hawaiian-gold);
+}
+
+.wisdom-card:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-heavy);
+}
+
+.wisdom-pattern {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 80px;
+  height: 80px;
+  background: var(--gradient-hawaiian);
+  border-radius: 50%;
+  opacity: 0.1;
+  transform: translate(30px, -30px);
+}
+
+.wisdom-content-inner {
+  position: relative;
+  z-index: 2;
+}
+
+.wisdom-proverb {
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: var(--hawaiian-red);
+  margin-bottom: 1rem;
+  font-style: italic;
+  line-height: 1.4;
+}
+
+.wisdom-translation {
+  font-size: 1.1rem;
+  color: var(--text-dark);
+  margin-bottom: 1.5rem;
+  font-weight: 500;
+}
+
+.wisdom-meaning {
+  color: var(--text-light);
+  line-height: 1.6;
+  font-size: 0.95rem;
+}
+
+/* Cultural Experiences Section */
+.cultural-experiences {
+  padding: 8rem 0;
+  background: linear-gradient(135deg, #fff8e1 0%, #ffecb3 100%);
+}
+
+.cultural-sections-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+  gap: 4rem;
+}
+
+.cultural-section-card {
+  background: var(--white);
+  border-radius: var(--border-radius);
+  overflow: hidden;
+  box-shadow: var(--shadow-light);
+  transition: var(--transition);
+}
+
+.cultural-section-card:hover {
+  transform: translateY(-8px);
+  box-shadow: var(--shadow-heavy);
+}
+
+.section-image {
+  position: relative;
+  height: 250px;
+  overflow: hidden;
+}
+
+.section-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.cultural-section-card:hover .section-image img {
+  transform: scale(1.1);
+}
+
+.image-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, rgba(211, 47, 47, 0.3), rgba(255, 111, 0, 0.3));
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.cultural-section-card:hover .image-overlay {
+  opacity: 1;
+}
+
+.section-content {
+  padding: 2.5rem;
+}
+
+.section-title {
+  font-size: 1.8rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  color: var(--text-dark);
+}
+
+.section-hawaiian-title {
+  font-size: 1.2rem;
+  font-weight: 400;
+  color: var(--hawaiian-brown);
+  margin-bottom: 1.5rem;
+  font-style: italic;
+}
+
+.section-description {
+  color: var(--text-light);
+  line-height: 1.6;
+  margin-bottom: 2rem;
+  font-size: 1rem;
+}
+
+.activities-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+  margin-bottom: 2rem;
+}
+
+.activity-tag {
+  background: var(--gradient-hawaiian);
+  color: var(--white);
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  transition: var(--transition);
+}
+
+.activity-tag:hover {
+  transform: scale(1.05);
+  box-shadow: var(--shadow-light);
+}
+
+.learn-more-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: transparent;
+  color: var(--hawaiian-red);
+  border: 2px solid var(--hawaiian-red);
+  padding: 1rem 2rem;
+  border-radius: var(--border-radius);
+  font-weight: 600;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.learn-more-btn:hover {
+  background: var(--hawaiian-red);
+  color: var(--white);
+  transform: translateY(-2px);
+}
+
+.btn-arrow {
+  transition: transform 0.3s ease;
+}
+
+.learn-more-btn:hover .btn-arrow {
+  transform: translateX(4px);
+}
+
+/* Cultural CTA Section */
+.cultural-cta {
+  padding: 8rem 0;
+  background: var(--gradient-ocean);
+  color: var(--white);
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.cta-pattern {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: 
+    radial-gradient(circle at 20% 20%, rgba(255, 255, 255, 0.1) 0%, transparent 50%),
+    radial-gradient(circle at 80% 80%, rgba(255, 255, 255, 0.1) 0%, transparent 50%);
+  pointer-events: none;
+}
+
+.cta-content {
+  position: relative;
+  z-index: 2;
+}
+
+.cta-content .hawaiian-section-title {
+  margin-bottom: 2rem;
+}
+
+.cta-content .hawaiian-name {
+  color: var(--hawaiian-yellow);
+}
+
+.cta-content .section-subtitle {
+  color: var(--white);
+}
+
+.cta-content p {
+  font-size: 1.3rem;
+  margin-bottom: 3rem;
+  opacity: 0.9;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.cta-buttons {
+  display: flex;
+  gap: 2rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+/* Hawaiian Newsletter Section */
+.hawaiian-newsletter {
+  padding: 6rem 0;
+  background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+  color: var(--white);
+  position: relative;
+  overflow: hidden;
+}
+
+.newsletter-pattern {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: 
+    repeating-linear-gradient(
+      90deg,
+      transparent,
+      transparent 20px,
+      rgba(255, 111, 0, 0.1) 20px,
+      rgba(255, 111, 0, 0.1) 40px
+    );
+  pointer-events: none;
+}
+
+.newsletter-content {
+  text-align: center;
+  max-width: 700px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 2;
+}
+
+.newsletter-content .hawaiian-section-title {
+  margin-bottom: 2rem;
+}
+
+.newsletter-content .hawaiian-name {
+  color: var(--hawaiian-yellow);
+}
+
+.newsletter-content .section-subtitle {
+  color: var(--white);
+}
+
+.newsletter-content p {
+  font-size: 1.2rem;
+  margin-bottom: 3rem;
+  opacity: 0.9;
+}
+
+.newsletter-form {
+  display: flex;
+  gap: 1rem;
+  max-width: 500px;
+  margin: 0 auto;
+  flex-wrap: wrap;
+  background: rgba(255, 255, 255, 0.1);
+  padding: 1rem;
+  border-radius: var(--border-radius);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.newsletter-input {
+  flex: 1;
+  padding: 1.2rem 1.5rem;
+  border: none;
+  border-radius: var(--border-radius);
+  font-size: 1rem;
+  outline: none;
+  background: var(--white);
+  color: var(--text-dark);
+  min-width: 250px;
+}
+
+.newsletter-input::placeholder {
+  color: var(--text-light);
+}
+
+.newsletter-button {
+  padding: 1.2rem 2rem;
+  background: var(--gradient-hawaiian);
+  color: var(--white);
+  border: none;
+  border-radius: var(--border-radius);
+  font-weight: 600;
+  cursor: pointer;
+  transition: var(--transition);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 1rem;
+}
+
+.newsletter-button:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-hawaiian);
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .cultural-sections-grid {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+  }
+  
+  .wisdom-grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .hero-buttons {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .btn-primary, .btn-secondary, .btn-outline {
+    width: 100%;
+    max-width: 350px;
+  }
+  
+  .cta-buttons {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .newsletter-form {
+    flex-direction: column;
+  }
+  
+  .newsletter-input {
+    min-width: auto;
+  }
+  
+  .stats-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+  }
+  
+  .cultural-features-grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+  
+  .hawaiian-name {
+    font-size: 2rem;
+  }
+  
+  .section-subtitle {
+    font-size: 1.3rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .stats-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .hero-indicators {
+    bottom: 1rem;
+  }
+  
+  .cultural-feature-card,
+  .wisdom-card {
+    padding: 2rem 1.5rem;
+  }
+  
+  .cultural-stat-item {
+    padding: 2rem 1.5rem;
+  }
+  
+  .section-content {
+    padding: 2rem;
+  }
+  
+  .aloha-text {
+    font-size: 2.5rem;
+  }
+  
+  .hawaiian-name {
+    font-size: 1.8rem;
+  }
+}
+
+/* Animation keyframes */
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+@keyframes wave {
+  0%, 100% {
+    transform: rotate(0deg);
+  }
+  25% {
+    transform: rotate(2deg);
+  }
+  75% {
+    transform: rotate(-2deg);
+  }
+}
+
+/* Focus styles for accessibility */
+.btn-primary:focus,
+.btn-secondary:focus,
+.btn-outline:focus,
+.newsletter-button:focus,
+.learn-more-btn:focus {
+  outline: 2px solid var(--hawaiian-yellow);
+  outline-offset: 2px;
+}
+
+.newsletter-input:focus {
+  box-shadow: 0 0 0 3px rgba(255, 193, 7, 0.3);
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Print styles */
+@media print {
+  .hero-buttons,
+  .cta-buttons,
+  .newsletter-form {
+    display: none;
+  }
+}

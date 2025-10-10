@@ -1,122 +1,165 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useState, useEffect } from "react";
 import styles from "./Header.module.css";
 
-export default function Header({
-  logo = { text: "YourBrand", href: "/" },
-  navLinks = [
-    { label: "Головна", href: "#" },
-    { label: "Продукти", href: "#" },
-    { label: "Про нас", href: "#" },
-    { label: "Контакти", href: "#" },
-  ],
-  onSearch, // (q) => void
-}) {
-  const [menuOpen, setMenuOpen] = useState(false);
+export default function Header({ onNavigate }) {
   const [theme, setTheme] = useState("light");
-  const [query, setQuery] = useState("");
-  const menuRef = useRef(null);
+  const [menuOpen, setMenuOpen] = useState(false);
+  const [search, setSearch] = useState("");
+  const [isScrolled, setIsScrolled] = useState(false);
 
   useEffect(() => {
     const saved = localStorage.getItem("theme");
-    const prefersDark = window.matchMedia?.("(prefers-color-scheme: dark)").matches;
+    const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
     const initial = saved || (prefersDark ? "dark" : "light");
     setTheme(initial);
     document.documentElement.setAttribute("data-theme", initial);
   }, []);
 
   useEffect(() => {
-    function onDocClick(e) {
-      if (menuOpen && menuRef.current && !menuRef.current.contains(e.target)) {
-        setMenuOpen(false);
-      }
-    }
-    document.addEventListener("click", onDocClick);
-    return () => document.removeEventListener("click", onDocClick);
-  }, [menuOpen]);
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 20);
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
-  function toggleTheme() {
-    const next = theme === "dark" ? "light" : "dark";
+  const toggleTheme = () => {
+    const next = theme === "light" ? "dark" : "light";
     setTheme(next);
-    document.documentElement.setAttribute("data-theme", next);
     localStorage.setItem("theme", next);
-  }
+    document.documentElement.setAttribute("data-theme", next);
+  };
 
-  function handleSearch(e) {
+  const navLinks = [
+    { label: "Головна", href: "#", icon: "🏠" },
+    { label: "Продажі", href: "#sales", icon: "🎯" },
+    { label: "Культура", href: "#", icon: "🎭" },
+    { label: "Їжа", href: "#food", icon: "🍽️" },
+    { label: "Природа", href: "#nature", icon: "🌺" }
+  ];
+
+  const handleSearch = (e) => {
     e.preventDefault();
-    if (onSearch) onSearch(query.trim());
-  }
+    if (search.trim()) {
+      alert(`Пошук: ${search}`);
+      setSearch("");
+    }
+  };
 
   return (
-    <header className={styles.header} role="banner">
-      <nav className={styles.navbar} aria-label="Головна навігація">
-        <a className={styles.logo} href={logo.href} aria-label="На головну">
-          {/* невеликий SVG-логотип */}
-          <svg className={styles.logoMark} viewBox="0 0 24 24" aria-hidden="true">
-            <path d="M12 2l9 5v10l-9 5-9-5V7l9-5zm0 3.2L6 8v8l6 3.2L18 16V8l-6-2.8z" />
-          </svg>
-          <span className={styles.logoText}>{logo.text}</span>
-        </a>
+    <header className={`${styles.header} ${isScrolled ? styles.scrolled : ''}`}>
+      <nav className={styles.nav}>
+        {/* Логотип */}
+        <div className={styles.logoSection}>
+          <a href="/" className={styles.logo}>
+            <span className={styles.logoIcon}>🌺</span>
+            <span className={styles.logoText}>Hawaii</span>
+          </a>
+        </div>
 
-        <button
-          className={styles.iconButton}
-          aria-label="Відкрити меню"
-          aria-controls="mobile-menu"
-          aria-expanded={menuOpen}
-          onClick={() => setMenuOpen(v => !v)}
-        >
-          <span className={styles.burger} />
-        </button>
-
+        {/* Навігаційні посилання */}
         <ul className={styles.links}>
           {navLinks.map((l) => (
             <li key={l.label}>
-              <a className={styles.link} href={l.href}>{l.label}</a>
-            </li>
-          ))}
-        </ul>
-
-        <div className={styles.actions}>
-          <form className={styles.search} role="search" onSubmit={handleSearch}>
-            <label className={styles.srOnly} htmlFor="site-search">Пошук по сайту</label>
-            <input
-              id="site-search"
-              type="search"
-              placeholder="Пошук…"
-              value={query}
-              onChange={(e) => setQuery(e.target.value)}
-              className={styles.searchInput}
-            />
-            <button className={styles.searchBtn} aria-label="Шукати">⌕</button>
-          </form>
-
-          <button
-            className={styles.iconButton}
-            onClick={toggleTheme}
-            aria-label={theme === "dark" ? "Увімкнути світлу тему" : "Увімкнути темну тему"}
-            title="Тема"
-          >
-            {theme === "dark" ? "🌙" : "☀️"}
-          </button>
-
-          <div className={styles.avatar} role="img" aria-label="Профіль" title="Профіль">SG</div>
-        </div>
-      </nav>
-
-      {/* Mobile panel */}
-      <div
-        id="mobile-menu"
-        className={`${styles.mobile} ${menuOpen ? styles.mobileOpen : ""}`}
-        ref={menuRef}
-      >
-        <ul className={styles.mobileLinks} role="menu" aria-label="Мобільне меню">
-          {navLinks.map((l) => (
-            <li role="none" key={l.label}>
-              <a role="menuitem" className={styles.mobileLink} href={l.href} onClick={() => setMenuOpen(false)}>
-                {l.label}
+              <a 
+                href={l.href} 
+                className={styles.navLink}
+                onClick={(e) => {
+                  e.preventDefault();
+                  onNavigate && onNavigate(l.href);
+                }}
+              >
+                <span className={styles.navIcon}>{l.icon}</span>
+                <span className={styles.navText}>{l.label}</span>
               </a>
             </li>
           ))}
         </ul>
+
+        {/* Пошук та дії */}
+        <div className={styles.actions}>
+          <form onSubmit={handleSearch} className={styles.searchForm}>
+            <div className={styles.searchContainer}>
+              <input
+                type="text"
+                placeholder="Пошук місць..."
+                value={search}
+                onChange={e => setSearch(e.target.value)}
+                className={styles.searchInput}
+              />
+              <button type="submit" className={styles.searchBtn}>
+                <span className={styles.searchIcon}>🔍</span>
+              </button>
+            </div>
+          </form>
+
+          <div className={styles.userActions}>
+            <button onClick={toggleTheme} className={styles.themeBtn}>
+              <span className={styles.themeIcon}>
+                {theme === "dark" ? "🌙" : "☀️"}
+              </span>
+            </button>
+            
+            <div className={styles.avatar}>
+              <span className={styles.avatarText}>SG</span>
+              <div className={styles.avatarStatus}></div>
+            </div>
+          </div>
+
+          <button
+            className={`${styles.burger} ${menuOpen ? styles.burgerActive : ''}`}
+            onClick={() => setMenuOpen(!menuOpen)}
+            aria-label="Меню"
+          >
+            <span className={styles.burgerLine}></span>
+            <span className={styles.burgerLine}></span>
+            <span className={styles.burgerLine}></span>
+          </button>
+        </div>
+      </nav>
+
+      {/* Мобільне меню */}
+      <div className={`${styles.mobileMenu} ${menuOpen ? styles.mobileMenuOpen : ''}`}>
+        <div className={styles.mobileMenuContent}>
+          <div className={styles.mobileSearch}>
+            <form onSubmit={handleSearch}>
+              <input
+                type="text"
+                placeholder="Пошук місць..."
+                value={search}
+                onChange={e => setSearch(e.target.value)}
+                className={styles.mobileSearchInput}
+              />
+              <button type="submit" className={styles.mobileSearchBtn}>🔍</button>
+            </form>
+          </div>
+          
+          <ul className={styles.mobileLinks}>
+            {navLinks.map((l) => (
+              <li key={l.label}>
+                <a 
+                  href={l.href} 
+                  className={styles.mobileLink}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    onNavigate && onNavigate(l.href);
+                    setMenuOpen(false);
+                  }}
+                >
+                  <span className={styles.mobileLinkIcon}>{l.icon}</span>
+                  <span className={styles.mobileLinkText}>{l.label}</span>
+                </a>
+              </li>
+            ))}
+          </ul>
+
+          <div className={styles.mobileActions}>
+            <button onClick={toggleTheme} className={styles.mobileThemeBtn}>
+              <span>{theme === "dark" ? "🌙" : "☀️"}</span>
+              <span>{theme === "dark" ? "Темна тема" : "Світла тема"}</span>
+            </button>
+          </div>
+        </div>
       </div>
     </header>
   );
