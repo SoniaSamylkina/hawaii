@@ -133,10 +133,10 @@ export default function HomePage() {
             древніми традиціями та незабутніми пригодами
           </p>
           <div className="hero-buttons">
-            <button className="btn-primary">
-              <span>Дослідити зараз</span>
-              <span className="btn-icon">🌺</span>
-            </button>
+            <a href="#booking" className="btn-primary" onClick={(e)=>e.stopPropagation()}>
+              <span>Забронювати зараз</span>
+              <span className="btn-icon">🗓️</span>
+            </a>
             <button className="btn-secondary">
               <span>Дізнатися більше</span>
               <span className="btn-icon">🏄‍♂️</span>
@@ -277,14 +277,14 @@ export default function HomePage() {
             </h2>
             <p>Готові відчути справжній дух Алоха та поглибитися в гавайську культуру?</p>
             <div className="cta-buttons">
-              <button className="btn-primary">
+              <a href="#booking" className="btn-primary" onClick={(e)=>e.stopPropagation()}>
                 <span>Планувати подорож</span>
                 <span className="btn-icon">✈️</span>
-              </button>
-              <button className="btn-outline">
+              </a>
+              <a href="#sales" className="btn-outline" onClick={(e)=>e.stopPropagation()}>
                 <span>Культурні тури</span>
                 <span className="btn-icon">🌺</span>
-              </button>
+              </a>
             </div>
           </div>
         </div>

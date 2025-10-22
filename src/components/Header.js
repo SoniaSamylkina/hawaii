@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import styles from "./Header.module.css";
 
-export default function Header({ onNavigate }) {
+export default function Header({ onNavigate, onSearch }) {
   const [theme, setTheme] = useState("light");
   const [menuOpen, setMenuOpen] = useState(false);
   const [search, setSearch] = useState("");
@@ -40,10 +40,11 @@ export default function Header({ onNavigate }) {
 
   const handleSearch = (e) => {
     e.preventDefault();
-    if (search.trim()) {
-      alert(`Пошук: ${search}`);
-      setSearch("");
-    }
+    const query = search.trim();
+    if (!query) return;
+    onSearch && onSearch(query);
+    setSearch("");
+    setMenuOpen(false);
   };
 
   return (
